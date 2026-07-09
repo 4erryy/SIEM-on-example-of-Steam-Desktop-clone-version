@@ -14,17 +14,20 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Clean up project (Force remove junk)
+        run: |
+          # Удаляем всё, что содержит null bytes или не должно быть в линтере
+          rm -rf .venv/
+          rm -rf .git/
+          rm -rf __pycache__/
+          rm -rf data/
+          find . -name "*.pyc" -delete
+          find . -name "*.db" -delete
+
       - name: Install flake8
         run: pip install flake8
 
-      - name: Lint with flake8 (Ultra-Safe Mode)
+      - name: Lint with flake8
         run: |
-          # Мы больше не используем xargs, а позволяем flake8 самому искать файлы
-          # Флаг --exit-zero заставит линтер НЕ падать, даже если он встретит ошибку файла.
-          # Также добавим явное исключение всех папок, кроме нужных.
-          flake8 . \
-          --select=E9,F63,F7,F82 \
-          --exclude=.venv,__pycache__,.git,*.pyc,data,mafiles \
-          --exit-zero \
-          --show-source \
-          --statistics
+          # Теперь линтер гарантированно не найдет бинарных файлов
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
