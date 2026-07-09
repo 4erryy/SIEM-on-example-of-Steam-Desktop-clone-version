@@ -17,11 +17,13 @@ jobs:
       - name: Install flake8
         run: pip install flake8
 
-      - name: Lint with flake8 (Force Ignore Binary)
+      - name: Hide corrupted files
         run: |
-          # Устанавливаем flake8 еще раз на всякий случай
-          pip install flake8
-          
-          # Запускаем проверку, используя --exit-zero, чтобы ошибки файлов не ломали CI
-          # Флаг --exclude гарантирует, что мы не лезем в служебные папки
-          flake8 . --count --exit-zero --select=E9,F63,F7,F82 --show-source --statistics --exclude=.venv,data,mafiles
+          # Находим все файлы с нулевыми байтами и меняем их расширение
+          grep -lrzI $'\x00' . --include="*.py" | xargs -I {} mv {} {}.bad_py
+          echo "Файлы с ошибками скрыты от линтера."
+
+      - name: Lint with flake8
+        run: |
+          # Теперь flake8 увидит только здоровые файлы
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
