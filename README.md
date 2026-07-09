@@ -26,10 +26,10 @@
 ## Визуализация (скриншоты)
 
 ### Архитектура системы
-![Архитектура системы](assets/architecture.png)
+![Архитектура системы](assets/architecture-ru.png)
 
 ### Логи работы агента
-![Логи работы агента](assets/agent_log.png)
+![Логи работы агента](assets/agent_log-ru.png)
 
 ### 🧭 Навигатор
 - [Особенности](#features-ru)
@@ -229,10 +229,10 @@ This project addresses issues of increasing data privacy, protection, and encryp
 ## 📸 Visual Overview
 
 ### System Architecture
-![System Architecture](assets/architecture.png)
+![System Architecture](assets/architecture-eng.png)
 
 ### Agent Log Output
-![Agent Log Output](assets/agent_log.png)
+![Agent Log Output](assets/agent_log-eng.png)
 
 🧭 Navigator
 -[System Features](#features-eng)
