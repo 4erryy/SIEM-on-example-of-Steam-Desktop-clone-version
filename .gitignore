@@ -25,3 +25,10 @@ ENV/
 
 # Логи
 *.log
+
+# Секреты (ВАЖНО!)
+.env
+
+# Сессии Steam (если есть в папке backend)
+backend/mafiles/*
+!backend/mafiles/.gitkeep

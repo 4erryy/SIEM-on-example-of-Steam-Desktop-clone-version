@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+    backend:
+        build:  .
+        ports:
+            - "8090:8090"
+        environment:
+            - DB_URL=sqlite:///./data/steamlab.db
+        volumes:
+            - ./data:/app/data
+
+    agent:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        command: python agent/agent.py
+        depends_on:
+            - backend
+        volumes:
+            - .:/app
+
+    bot:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        command: python bot/bot.py
+        environment:
+            - TG_TOKEN=${TG_TOKEN}
+        depends_on:
+            - backend

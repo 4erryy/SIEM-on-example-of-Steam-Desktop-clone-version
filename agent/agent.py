@@ -1,6 +1,8 @@
 ﻿import os
 import json
 import time
+
+import load_dotenv
 import requests
 
 # Конфигурация
@@ -19,10 +21,20 @@ def save_to_file(filename, processed_ids):
         for item in processed_ids:
             f.write(f"{item}\n")
 
+# Загружаем всё из .env файла в память программы
+load_dotenv()
+
+# Просто берем переменную по имени
+TOKEN = os.getenv("TG_TOKEN")
+CHAT_ID = os.getenv("TG_CHAT_ID")
+
+# Для проверки (опционально):
+if not TOKEN:
+    print("Ошибка: Токен не найден в .env!")
 # --- Telegram отправка ---
 def send_to_telegram(message):
-    TOKEN = "8857964140:AAGGXbdLxgLmI7bC1bQHBbUudxXp-lNEaTU"
-    CHAT_ID = "442469649"
+    TG_TOKEN = f'8857964140:Insert your TOKEN from BotFather'
+    TG_CHAT_ID = 442469649
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     payload = {"chat_id": CHAT_ID, "text": str(message)}
     try:
