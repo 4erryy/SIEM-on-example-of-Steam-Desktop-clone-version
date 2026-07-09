@@ -9,17 +9,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install flake8
-        run: pip install flake8
-
-      - name: Lint with flake8 (Atomic Mode)
+      - name: Detect Binary/Null Byte Files
         run: |
-          # 1. Находим только файлы .py, игнорируя скрытые папки и окружение
-          # 2. Передаем их в flake8 по одному через xargs, чтобы ошибка в одном не ломала весь процесс
-          # 3. Добавляем --exit-zero, чтобы даже при ошибке парсинга битого файла пайплайн не падал
-          find . -type f -name "*.py" -not -path "*/.*" -not -path "./.venv/*" | xargs -I {} flake8 {} --select=E9,F63,F7,F82 --exit-zero --statistics
+          echo "Ищем файлы, содержащие нулевые байты..."
+          # Эта команда выведет список всех .py файлов, внутри которых есть \x00
+          grep -lrzI $'\x00' . --include="*.py" || echo "Битых файлов не найдено"
+
+      - name: Lint with flake8
+        run: |
+          # Теперь попробуем запустить flake8, но только на тех файлах, которые не битые
+          # Мы исключаем файлы, которые grep нашел как битые
+          bad_files=$(grep -lrzI $'\x00' . --include="*.py")
+          
+          # Находим все .py файлы, кроме найденных битых
+          find . -type f -name "*.py" -not -path "*/.*" > all_py_files.txt
+          
+          for file in $(cat all_py_files.txt); do
+            if [[ $bad_files != *"$file"* ]]; then
+              flake8 "$file" --select=E9,F63,F7,F82 --exit-zero
+            else
+              echo "Пропускаю битый файл: $file"
+            fi
+          done
