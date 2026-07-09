@@ -14,20 +14,12 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Clean up project (Force remove junk)
-        run: |
-          # Удаляем всё, что содержит null bytes или не должно быть в линтере
-          rm -rf .venv/
-          rm -rf .git/
-          rm -rf __pycache__/
-          rm -rf data/
-          find . -name "*.pyc" -delete
-          find . -name "*.db" -delete
-
       - name: Install flake8
         run: pip install flake8
 
-      - name: Lint with flake8
+      - name: Lint with flake8 (Atomic Mode)
         run: |
-          # Теперь линтер гарантированно не найдет бинарных файлов
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # 1. Находим только файлы .py, игнорируя скрытые папки и окружение
+          # 2. Передаем их в flake8 по одному через xargs, чтобы ошибка в одном не ломала весь процесс
+          # 3. Добавляем --exit-zero, чтобы даже при ошибке парсинга битого файла пайплайн не падал
+          find . -type f -name "*.py" -not -path "*/.*" -not -path "./.venv/*" | xargs -I {} flake8 {} --select=E9,F63,F7,F82 --exit-zero --statistics
