@@ -211,9 +211,15 @@ pip install -r requirements.txt
 ⚙️ Конфигурация
 Для работы уведомлений в файле agent/agent.py или agent/utils.py необходимо указать ваши данные:
 
-TOKEN: Токен вашего бота (получен у @BotFather).
+### ⚙️ Переменные окружения (.env)
 
-CHAT_ID: Ваш числовой идентификатор (получен у @userinfobot).
+| Переменная | Тип | Описание |
+| :--- | :--- | :--- |
+| `TG_TOKEN` | String | Токен вашего бота (от @BotFather) |
+| `CHAT_ID` | Integer | Ваш ID (от @userinfobot) |
+| `DB_URL` | String | Путь к БД (например: sqlite:///./data/steamlab.db) |
+| `API_KEY` | String | Ключ доступа к API |
+| `DEBUG_MODE` | Boolean | Режим отладки (True/False) |
 
 📄 Лицензия
 Проект предназначен исключительно для образовательных целей и изучения взаимодействия микросервисов на Python.
@@ -415,9 +421,15 @@ pip install -r requirements.txt
 ⚙️ Configuration
 To properly route real-time telemetry notifications, specify your credentials within agent/agent.py or agent/utils.py:
 
-TOKEN: Your active access string received from @BotFather.
+### ⚙️ Environment Variables (.env)
 
-CHAT_ID: Your personal routing identification code fetched from @userinfobot.
+| Variable | Type | Description |
+| :--- | :--- | :--- |
+| `TG_TOKEN` | String | Токен вашего бота (получен у @BotFather) |
+| `CHAT_ID` | Integer | Ваш ID (получен у @userinfobot) |
+| `DB_URL` | String | Путь к базе данных (например: sqlite:///./data/steamlab.db) |
+| `API_KEY` | String | Ключ доступа к внутреннему API |
+| `DEBUG_MODE` | Boolean | Режим отладки (True/False) |
 
 📄 License
 This project is intended strictly for educational purposes and researching Python microservices interaction.
