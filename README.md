@@ -14,12 +14,20 @@
 Проект представляет собой модульную систему мониторинга и автоматизации, предназначенную для отслеживания системных событий и интеграции с внешними сервисами оповещения.
 Этот проект затрагивает вопросы повышение конфиденциальности, защиты и шифрования данных, их утечек в реальном времени (как SIEM мониторинг системы) на примере десктоп приложения Steam (я создал его клон с названием «SteamLab». Составления макета, архитектуры, тактик и способов защиты и атаки на десктоп систему пользователя. Атакующий работает по принципу внедрения вредоносной программы в систему пользователя в скрытном (stealth mode) режиме и далее формирует и отправляет сначала на сервер, а потом через тг бота mafile, который содержит login, pass, 2FA Code, session authorise. 
 
+### 🧭 Навигатор
+- [Особенности](#features-ru)
+- [Структура проекта](#structure-ru)
+- [Установка и запуск](#install-ru)
+- [Конфигурация](#config-ru)
+
+<a name="features-ru"></a>
 ## 🚀 Особенности системы
 * Архитектура: Разделение на серверную часть (API) и клиентский агент.
 * Автоматизация: Мониторинг файловой системы в режиме реального времени.
 * Интеграция: Автоматическая отправка уведомлений о критических событиях в Telegram.
 * Безопасность: Изоляция зависимостей через виртуальное окружение.
 
+<a name="structure-ru"></a>
 ## 📂 Структура проекта
 
 ### Упрощенная:
@@ -144,6 +152,7 @@ SteamLabProject/ (ROOT)
     └── setup.ps1
 ```
     
+<a name="install-ru"></a>
 # 🛠 Установка и запуск
 Подготовка окружения
 Клонируйте репозиторий и создайте виртуальное окружение:
@@ -178,6 +187,7 @@ pip install -r requirements.txt
 .venv\Scripts\python.exe agent/agent.py
 ```
 
+<a name="config-ru"></a>
 ⚙️ Конфигурация
 Для работы уведомлений в файле agent/agent.py или agent/utils.py необходимо указать ваши данные:
 
@@ -192,6 +202,13 @@ CHAT_ID: Ваш числовой идентификатор (получен у @
 The project is a modular monitoring and automation system designed to track system events and integrate with external notification services.
 This project addresses issues of increasing data privacy, protection, and encryption, as well as real-time data exfiltration detection (similar to SIEM system monitoring) using the example of the Steam desktop application (I created its clone named "SteamLab"). It involves creating a layout, architecture, tactics, and methods for defending and attacking the user's desktop system. The attacker operates on the principle of deploying malicious software into the user's system in stealth mode, then forms and sends data first to the server, and then via a Telegram bot in the form of a maFile containing login, pass, 2FA Code, and session authorize tokens.
 
+🧭 Navigator
+-[System Features](#features-eng)
+-[Project Structure](#structure-eng)
+-[Installation & Setup](#install-eng)
+-[Configuration](#config-eng)
+
+<a name="features-eng"></a>
 🚀 System Features
 Architecture: Partitioned into a server-side framework (API) and a client-side agent.
 
@@ -201,6 +218,7 @@ Integration: Automatic dispatch of critical security event notifications via Tel
 
 Security: Isolation of target project dependencies through a virtual environment.
 
+<a name="structure-eng"></a>
 📂 Project Structure
 Simplified:
 
@@ -324,6 +342,7 @@ SteamLabProject/ (ROOT)
     └── setup.ps1
 ````
  
+<a name="install-eng"></a>
 # 🛠 Installation & Setup
 Environment Setup
 Clone this repository locally and set up your standalone execution environment:
@@ -357,6 +376,7 @@ pip install -r requirements.txt
 .venv\Scripts\python.exe agent/agent.py
 ```
 
+<a name="config-eng"></a>
 ⚙️ Configuration
 To properly route real-time telemetry notifications, specify your credentials within agent/agent.py or agent/utils.py:
 
