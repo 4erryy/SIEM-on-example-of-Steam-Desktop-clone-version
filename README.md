@@ -23,13 +23,13 @@
 | **Bot** | Уведомления через Telegram |
 | **UI** | Дашборды и визуализация |
 
-### Визуализация (скриншоты)
+## Визуализация (скриншоты)
 
+### Архитектура системы
 ![Архитектура системы](assets/architecture.png)
 
 ### Логи работы агента
-
-![Архитектура системы](agent_log/architecture.png)
+![Логи работы агента](assets/agent_log.png)
 *Схема взаимодействия компонентов системы*
 
 ### 🧭 Навигатор
@@ -226,7 +226,7 @@ This project addresses issues of increasing data privacy, protection, and encryp
 ![System Architecture](assets/architecture.png)
 
 ### Agent Log Output
-![Agent Log Output](agent_log/architecture.png)
+![Agent Log Output](assets/agent_log.png)
 
 🧭 Navigator
 -[System Features](#features-eng)
