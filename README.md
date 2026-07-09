@@ -14,6 +14,24 @@
 Проект представляет собой модульную систему мониторинга и автоматизации, предназначенную для отслеживания системных событий и интеграции с внешними сервисами оповещения.
 Этот проект затрагивает вопросы повышение конфиденциальности, защиты и шифрования данных, их утечек в реальном времени (как SIEM мониторинг системы) на примере десктоп приложения Steam (я создал его клон с названием «SteamLab». Составления макета, архитектуры, тактик и способов защиты и атаки на десктоп систему пользователя. Атакующий работает по принципу внедрения вредоносной программы в систему пользователя в скрытном (stealth mode) режиме и далее формирует и отправляет сначала на сервер, а потом через тг бота mafile, который содержит login, pass, 2FA Code, session authorise. 
 
+### Компоненты системы
+
+| Модуль | Основная задача |
+| :--- | :--- |
+| **Agent** | Мониторинг событий и сбор данных |
+| **Backend** | Обработка API и логика безопасности |
+| **Bot** | Уведомления через Telegram |
+| **UI** | Дашборды и визуализация |
+
+### Визуализация (скриншоты)
+
+![Архитектура системы](assets/architecture.png)
+
+### Логи работы агента
+
+![Архитектура системы](agent_log/architecture.png)
+*Схема взаимодействия компонентов системы*
+
 ### 🧭 Навигатор
 - [Особенности](#features-ru)
 - [Структура проекта](#structure-ru)
@@ -201,6 +219,14 @@ CHAT_ID: Ваш числовой идентификатор (получен у @
 # English
 The project is a modular monitoring and automation system designed to track system events and integrate with external notification services.
 This project addresses issues of increasing data privacy, protection, and encryption, as well as real-time data exfiltration detection (similar to SIEM system monitoring) using the example of the Steam desktop application (I created its clone named "SteamLab"). It involves creating a layout, architecture, tactics, and methods for defending and attacking the user's desktop system. The attacker operates on the principle of deploying malicious software into the user's system in stealth mode, then forms and sends data first to the server, and then via a Telegram bot in the form of a maFile containing login, pass, 2FA Code, and session authorize tokens.
+
+## 📸 Visual Overview
+
+### System Architecture
+![System Architecture](assets/architecture.png)
+
+### Agent Log Output
+![Agent Log Output](agent_log/architecture.png)
 
 🧭 Navigator
 -[System Features](#features-eng)
