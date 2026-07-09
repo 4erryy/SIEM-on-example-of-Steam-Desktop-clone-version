@@ -1,5 +1,7 @@
 # Виртуальное окружение
 .venv/
+__pycache__/
+*.pyc
 venv/
 env/
 ENV/
