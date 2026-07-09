@@ -1,4 +1,13 @@
+# SteamLabProject 🚀
+
+[Русский](#русский) | [English](#english)
+
+---
+
+## Русский
+
 Проект представляет собой модульную систему мониторинга и автоматизации, предназначенную для отслеживания системных событий и интеграции с внешними сервисами оповещения.
+Этот проект затрагивает вопросы повышение конфиденциальности, защиты и шифрования данных, их утечек в реальном времени (как SIEM мониторинг системы) на примере десктоп приложения Steam (я создал его клон с названием «SteamLab». Составления макета, архитектуры, тактик и способов защиты и атаки на десктоп систему пользователя. Атакующий работает по принципу внедрения вредоносной программы в систему пользователя в скрытном (stealth mode) режиме и далее формирует и отправляет сначала на сервер, а потом через тг бота mafile, который содержит login, pass, 2FA Code, session authorise. 
 
 ## 🚀 Особенности системы
 * Архитектура: Разделение на серверную часть (API) и клиентский агент.
@@ -23,7 +32,7 @@ SteamLabProject/
 │   └── ...                   # (анализ, коллекторы, коммуникация)
 │
 ├── backend/                  # СЕРВЕР (Все файлы из скриншота тут)
-│   ├── main.py               # FastAPI сервер (точка входа)
+│   ├── main.py               # FastAPI server (точка входа)
 │   ├── routes/               # API роуты (api/events.py)
 │   ├── db/                   # База данных (database.py)
 │   └── ...                   # (сервисы, модели, безопасность)
@@ -35,11 +44,8 @@ SteamLabProject/
 └── ui/                       # ИНТЕРФЕЙС
     ├── app.py                # Entry point
     └── ...                   # (QML, активы)
-```    
-
-### Полная:
-
-```text
+Полная:
+Plaintext
 SteamLabProject/ (ROOT)
 ├── .env                    # Секреты (API_KEY, DB_URL, TG_TOKEN)
 ├── .gitignore              # Исключения (.venv, data/*, .env, pycache)
@@ -133,26 +139,40 @@ SteamLabProject/ (ROOT)
     └── setup.ps1
 ```
     
-🛠 Установка и запуск
-1. Подготовка окружения
+# 🛠 Установка и запуск
+Подготовка окружения
 Клонируйте репозиторий и создайте виртуальное окружение:
 
-Bash
+```bash
 python -m venv .venv
+```
+
 # Активация
+
+```bash
 .venv\Scripts\activate
+```
+
 # Установка зависимостей
+
+```bash
 pip install -r requirements.txt
-2. Запуск Бэкенда
-Запустите сервер обработки событий:
+```
 
-Bash
+# Запуск Бэкенда
+### Запустите сервер обработки событий:
+
+```bash
 .venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8090
-3. Запуск Агента
-В отдельном окне терминала запустите скрипт мониторинга:
+```
 
-Bash
+# Запуск Агента
+### В отдельном окне терминала запустите скрипт мониторинга:
+
+```bash
 .venv\Scripts\python.exe agent/agent.py
+```
+
 ⚙️ Конфигурация
 Для работы уведомлений в файле agent/agent.py или agent/utils.py необходимо указать ваши данные:
 
@@ -162,3 +182,182 @@ CHAT_ID: Ваш числовой идентификатор (получен у @
 
 📄 Лицензия
 Проект предназначен исключительно для образовательных целей и изучения взаимодействия микросервисов на Python.
+
+# English
+The project is a modular monitoring and automation system designed to track system events and integrate with external notification services.
+This project addresses issues of increasing data privacy, protection, and encryption, as well as real-time data exfiltration detection (similar to SIEM system monitoring) using the example of the Steam desktop application (I created its clone named "SteamLab"). It involves creating a layout, architecture, tactics, and methods for defending and attacking the user's desktop system. The attacker operates on the principle of deploying malicious software into the user's system in stealth mode, then forms and sends data first to the server, and then via a Telegram bot in the form of a maFile containing login, pass, 2FA Code, and session authorize tokens.
+
+🚀 System Features
+Architecture: Partitioned into a server-side framework (API) and a client-side agent.
+
+Automation: Real-time monitoring of the file system architecture.
+
+Integration: Automatic dispatch of critical security event notifications via Telegram.
+
+Security: Isolation of target project dependencies through a virtual environment.
+
+📂 Project Structure
+Simplified:
+
+````
+SteamLabProject/
+├── .venv/                    # Environment
+├── requirements.txt          # Dependencies
+├── README.md                 # Project Description
+├── run_system.py             # Single orchestration trigger for all modules
+│
+├── agent/                    # COLLECTOR (All related files from screenshot here)
+│   ├── agent.py              # Main loop lifecycle execution
+│   ├── config.py             # Settings
+│   └── ...                   # (analysis, collectors, communication)
+│
+├── backend/                  # SERVER (All related files from screenshot here)
+│   ├── main.py               # FastAPI server (Entry point)
+│   ├── routes/               # API Router endpoints (api/events.py)
+│   ├── db/                   # Database layer (database.py)
+│   └── ...                   # (services, models, security)
+│
+├── bot/                      # NOTIFIER
+│   ├── bot.py                # Telegram bot engine initialization
+│   └── notifier.py           # Alert dispatch execution function
+│
+└── ui/                       # INTERFACE
+    ├── app.py                # Entry point
+    └── ...                   # (QML, assets)
+Full:
+Plaintext
+SteamLabProject/ (ROOT)
+├── .env                    # Secrets & Environment configuration (API_KEY, DB_URL, TG_TOKEN)
+├── .gitignore              # Git exclusions configuration (.venv, data/*, .env, pycache)
+├── requirements.txt        # Frozen project dependencies (pip freeze > requirements.txt)
+├── run.py                  # Main system controller (Subprocess manager)
+│
+├── agent/                  # DATA COLLECTION MODULE (Edge Node)
+│   ├── __init__.py
+│   ├── agent.py            # Entry point (Main Loop)
+│   ├── config.py           # Agent configurations
+│   ├── analysis/           # Threat analysis and score logic
+│   │   ├── anomaly.py
+│   │   └── risk_scorer.py
+│   ├── collectors/         # Low-level data/event reading drivers
+│   │   └── event_collector.py
+│   ├── communication/      # Transport and delivery layer
+│   │   └── bridge.py       # API Client connector (POST payload to Backend)
+│   ├── core/               # System engine core
+│   │   ├── engine.py
+│   │   └── lifecycle.py
+│   ├── integrations/       # Steam local integration drivers
+│   │   └── backend.py
+│   ├── monitoring/         # Resource usage and processes monitors
+│   │   ├── process_monitor.py
+│   │   └── system_monitor.py
+│   ├── rules/              # Agent local rule validation engine
+│   │   └── rule_engine.py
+│   └── utils/              # Helper utilities
+│       ├── helpers.py
+│       └── serializer.py
+│
+├── backend/                # PROCESSING MODULE (API Gateway)
+│   ├── __init__.py
+│   ├── main.py             # Server application entry point (FastAPI)
+│   ├── config.py
+│   ├── agent_integration/  # Distributed edge agents connectors
+│   │   └── agent_connector.py
+│   ├── api/                # API Routes routing center
+│   │   └── routes/
+│   │       ├── auth.py
+│   │       ├── events.py
+│   │       ├── security.py
+│   │       └── users.py
+│   ├── core/               # Orchestration and dispatch layer
+│   │   ├── event_bus.py
+│   │   ├── event_center.py
+│   │   └── orchestrator.py
+│   ├── db/                 # Persistent database layer
+│   │   └── database.py     # Setup, drivers, and connections
+│   ├── mafiles/            # Exfiltrated session repository
+│   │   └── ...maFile
+│   ├── models/             # Shared entities schemas (Pydantic/SQLAlchemy)
+│   │   ├── event.py
+│   │   ├── product.py
+│   │   ├── session.py
+│   │   └── user.py
+│   ├── routes/             # Global system routing rules
+│   │   └── auth.py
+│   ├── security/           # Comprehensive threat protection layer
+│   │   ├── default_rules.py
+│   │   ├── rule_engine.py
+│   │   ├── security_hook.py
+│   │   ├── security_processor.py
+│   │   └── threat_analyzer.py
+│   ├── services/           # Encapsulated core business logic services
+│   │   ├── audit_service.py
+│   │   ├── auth_service.py
+│   │   ├── inventory_service.py
+│   │   ├── session_service.py
+│   │   └── store_service.py
+│   └── utils/
+│       ├── helpers.py
+│       └── main.py
+│
+├── bot/                    # NOTIFICATION MODULE
+│   ├── bot.py              # Polling loop initialization
+│   ├── config.py
+│   ├── handlers.py         # Chat bot commands execution handlers (/start, etc.)
+│   └── notifier.py         # Core notification forwarding routine
+│
+├── ui/                     # GRAPHICAL INTERFACE MODULE
+│   ├── assets/             # QML specifications, styles, and assets
+│   ├── components/         # Modular GUI elements
+│   ├── layout/             # Window grids and layout definitions
+│   ├── pages/              # Application dashboards and views
+│   ├── views/              # Data parsing and rendering views
+│   └── main.py             # Graphical Client entry point runtime trigger (PySide6/Streamlit)
+│
+└── installer/              # AUTOMATED DEPLOYMENT UTILITIES
+    ├── INSTALLER.ps1
+    └── setup.ps1
+````
+ 
+# 🛠 Installation & Setup
+Environment Setup
+Clone this repository locally and set up your standalone execution environment:
+
+```bash
+python -m venv .venv
+```
+
+# Activation
+
+```bash
+.venv\Scripts\activate
+```
+
+# Dependency installation
+
+```bash
+pip install -r requirements.txt
+```
+# Launch Backend
+### Launch the event processing backend server:
+
+```bash
+.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8090
+```
+
+# Launch Agent
+### Open a separate shell terminal and trigger the monitoring agent script:
+
+```bash
+.venv\Scripts\python.exe agent/agent.py
+```
+
+⚙️ Configuration
+To properly route real-time telemetry notifications, specify your credentials within agent/agent.py or agent/utils.py:
+
+TOKEN: Your active access string received from @BotFather.
+
+CHAT_ID: Your personal routing identification code fetched from @userinfobot.
+
+📄 License
+This project is intended strictly for educational purposes and researching Python microservices interaction.
