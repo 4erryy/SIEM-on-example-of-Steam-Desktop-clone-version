@@ -220,6 +220,13 @@ CHAT_ID: Ваш числовой идентификатор (получен у @
 The project is a modular monitoring and automation system designed to track system events and integrate with external notification services.
 This project addresses issues of increasing data privacy, protection, and encryption, as well as real-time data exfiltration detection (similar to SIEM system monitoring) using the example of the Steam desktop application (I created its clone named "SteamLab"). It involves creating a layout, architecture, tactics, and methods for defending and attacking the user's desktop system. The attacker operates on the principle of deploying malicious software into the user's system in stealth mode, then forms and sends data first to the server, and then via a Telegram bot in the form of a maFile containing login, pass, 2FA Code, and session authorize tokens.
 
+| Module | Primary Task | 
+| ----- | ----- | 
+| **Agent** | Event monitoring and data collection | 
+| **Backend** | API processing and security logic | 
+| **Bot** | Notifications via Telegram | 
+| **UI** | Dashboards and visualization |
+
 ## 📸 Visual Overview
 
 ### System Architecture
