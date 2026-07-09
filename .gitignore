@@ -1,0 +1,27 @@
+# Виртуальное окружение
+.venv/
+venv/
+env/
+ENV/
+
+# Кэш Python
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Локальные базы данных SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# Конфигурации сред разработки (IDE)
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Логи
+*.log
