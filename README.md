@@ -1,5 +1,10 @@
 # SteamLabProject 🚀
 
+![Python](https://img.shields.io/badge/python-3.10-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.95-green)
+![Docker](https://img.shields.io/badge/Docker-ready-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
 [Русский](#русский) | [English](#english)
 
 ---
